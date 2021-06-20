@@ -9,6 +9,7 @@ This is the beginning of the repository for the Raising Awesome Smart Cam projec
 4. Make the Pi SSH ready and on your wifi upon first use (aka headless):
   Create an empty file titled ssh and put on the PC's SD card drive.
   Create a file named wpa_supplicant.conf with the following in it:
+
 ```
 country=US
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -20,7 +21,8 @@ psk="WIFI_PASSWORD"
 key_mgmt=WPA-PSK
 }
 ```
-  **_NOTE:_** Only 2.4Ghz WiFi connections are compatible with RPi's!  A 5Ghz will not work.
+
+   **_NOTE:_** Only 2.4Ghz WiFi connections are compatible with RPi's!  A 5Ghz will not work.
 
 ## Install the RTP Server:
 <https://sylvaindurand.org/surveillance-camera-with-raspberry-pi/>
