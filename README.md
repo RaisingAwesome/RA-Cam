@@ -2,7 +2,7 @@
 
 This is the beginning of the repository for the Raising Awesome Smart Cam project.  It will apply various Visual AI techniques.
 
-## Build a Pi:
+# Build a Pi:
 
    1. Get a Raspberry Pi Zero and blank 16 Gig SD Card
    2. Build with the Raspberry Pi Imager Software
@@ -25,6 +25,7 @@ key_mgmt=WPA-PSK
 
    **_NOTE:_** Only 2.4Ghz WiFi connections are compatible with RPi's!  A 5Ghz will not work.
 
+# RTPSERVER
 ## Install the RTP Server:
    <https://sylvaindurand.org/surveillance-camera-with-raspberry-pi/>
 ```
