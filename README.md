@@ -26,7 +26,7 @@ key_mgmt=WPA-PSK
    **_NOTE:_** Only 2.4Ghz WiFi connections are compatible with RPi's!  A 5Ghz will not work.
 
 ## Install the RTP Server:
-<https://sylvaindurand.org/surveillance-camera-with-raspberry-pi/>
+   <https://sylvaindurand.org/surveillance-camera-with-raspberry-pi/>
 ```
 sudo apt-get install cmake liblog4cpp5-dev libv4l-dev
 git clone https://github.com/mpromonet/v4l2rtspserver.git
