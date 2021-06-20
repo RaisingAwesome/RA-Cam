@@ -3,12 +3,13 @@
 This is the beginning of the repository for the Raising Awesome Smart Cam project.  It will apply various Visual AI techniques.
 
 ## Build a Pi:
-1. Get a Raspberry Pi Zero and blank 16 Gig SD Card
-2. Build with the Raspberry Pi Imager Software
-3. Remove the sD card from the PC and reinsert to activate the readable SD drive.
-4. Make the Pi SSH ready and on your wifi upon first use (aka headless):
-  Create an empty file titled ssh and put on the PC's SD card drive.
-  Create a file named wpa_supplicant.conf with the following in it:
+
+   1. Get a Raspberry Pi Zero and blank 16 Gig SD Card
+   2. Build with the Raspberry Pi Imager Software
+   3. Remove the sD card from the PC and reinsert to activate the readable SD drive.
+   4. Make the Pi SSH ready and on your wifi upon first use (aka headless):
+      Create an empty file titled ssh and put on the PC's SD card drive.
+      Create a file named wpa_supplicant.conf with the following in it:
 
 ```
 country=US
