@@ -37,6 +37,8 @@ make
 sudo make install
 ```
 
+  v4l2rtspserver -H 972 -W 1296 -F 15 -P 8555 /dev/video0
+
 ## To rotate 180, use the default driver parameters:
 ```
 v4l2-ctl --set-ctrl vertical_flip=1
