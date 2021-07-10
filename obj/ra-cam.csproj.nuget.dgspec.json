@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/pi/ra-cam/ra-cam.csproj": {}
+    "/home/pi/ra-cam/RA-Cam/ra-cam.csproj": {}
   },
   "projects": {
-    "/home/pi/ra-cam/ra-cam.csproj": {
+    "/home/pi/ra-cam/RA-Cam/ra-cam.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/pi/ra-cam/ra-cam.csproj",
+        "projectUniqueName": "/home/pi/ra-cam/RA-Cam/ra-cam.csproj",
         "projectName": "ra-cam",
-        "projectPath": "/home/pi/ra-cam/ra-cam.csproj",
+        "projectPath": "/home/pi/ra-cam/RA-Cam/ra-cam.csproj",
         "packagesPath": "/home/pi/.nuget/packages/",
-        "outputPath": "/home/pi/ra-cam/obj/",
+        "outputPath": "/home/pi/ra-cam/RA-Cam/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/pi/.nuget/NuGet/NuGet.Config"
