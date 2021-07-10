@@ -29,6 +29,9 @@ key_mgmt=WPA-PSK
 ## Install the RTP Server:
    <https://sylvaindurand.org/surveillance-camera-with-raspberry-pi/>
 ```
+sudo apt-get update
+sudo apt-get install #catch up everything
+sudo apt-get install git #if you haven't already got it
 sudo apt-get install cmake liblog4cpp5-dev libv4l-dev
 git clone https://github.com/mpromonet/v4l2rtspserver.git
 cd v4l2rtspserver/
