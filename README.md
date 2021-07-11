@@ -25,31 +25,30 @@ key_mgmt=WPA-PSK
 
    **_NOTE:_** Only 2.4Ghz WiFi connections are compatible with RPi's!  A 5Ghz will not work.
 
-# RTPSERVER
-## Install the RTP Server:
-   <https://sylvaindurand.org/surveillance-camera-with-raspberry-pi/>
+# OPENCV
+## Install it for cpp:
 ```
-sudo apt-get update
-sudo apt-get install #catch up everything
-sudo apt-get install git #if you haven't already got it
-sudo apt-get install cmake liblog4cpp5-dev libv4l-dev
-git clone https://github.com/mpromonet/v4l2rtspserver.git
-cd v4l2rtspserver/
-cmake .
-make
-sudo make install
+# Install minimal prerequisites (Ubuntu 18.04 as reference)
+sudo apt update && sudo apt install -y cmake g++ wget unzip
+# Download and unpack sources
+wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip
+unzip opencv.zip
+# Create build directory
+mkdir -p build && cd build
+# Configure
+cmake  ../opencv-master
+# Build
+cmake --build .
+```
+## .Net 5:
+After getting dotnet installed, do the following in the RA-Cam directory:
+```
+dotnet add package OpenCV.Net --version 3.3.1
 ```
 
-  ./v4l2rtspserver -H 972 -W 1296 -F 15 -P 8555 /dev/video0
-
+# Video General Stuff
 ## To rotate 180, use the default driver parameters:
 ```
 v4l2-ctl --set-ctrl vertical_flip=1
 v4l2-ctl --set-ctrl horizontal_flip=1
-```
-
-# C# APPROACH
-After getting dotnet installed, do the following in the RA-Cam directory:
-```
-dotnet add package OpenCV.Net --version 3.3.1
 ```
