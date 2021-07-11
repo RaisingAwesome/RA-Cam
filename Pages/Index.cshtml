@@ -4,7 +4,31 @@
     ViewData["Title"] = "RA-Cam";
 }
 
-<div class="text-center">
-    <h1 class="display-4">The Raising Awesome Camera:  RA-Cam</h1>
-    <p>Hello!</p>
+<div class="container-fluid">
+    <div class="d-flex flex-row">
+        <div class="d-flex justify-content-center">
+            <h2 class="display-4">The Raising Awesome Camera:  RA-Cam</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <button data-toggle="tooltip" title="This will put the camera in AI mode to detect and alert on movement." data-placement="right" class="btn btn-primary m-2 btn-block">Baby AI</button>
+            <button data-toggle="tooltip" title="This will an automatic picture if a human comes into view." data-placement="right" class="btn btn-primary m-2 btn-block">Human AI</button>                
+            <button data-toggle="tooltip" title="This will take an automatic picture if a human smiles in the view." data-placement="right" class="btn btn-primary m-2 btn-block">Smiles AI</button>
+            <button data-toggle="tooltip" title="This will take an automatic picture if an squirrel, bird, or deer comes in the view." data-placement="right" class="btn btn-primary m-2 btn-block">Nature AI</button>
+            <button data-toggle="tooltip" title="This will take a manual snapshot." data-placement="right" class="btn btn-success m-2 btn-block">Snapshot</button>
+            
+        </div>
+        <div class="col-lg-10">
+           <img src="http://192.168.1.242:8555/stream.mjpg" width="640" height="480"><br/>
+           <img src="/Images/example.png" width=100px>
+           <img src="/Images/example.png" width=100px>
+           <img src="/Images/example.png" width=100px>
+           <img src="/Images/example.png" width=100px>
+           <img src="/Images/example.png" width=100px>
+           <button data-toggle="tooltip" title="View all snapshots." data-placement="right" class="btn btn-info m-2">View All Snapshots</button>
+        </div>
+
+    </div>
 </div>
+
