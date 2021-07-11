@@ -47,3 +47,9 @@ sudo make install
 v4l2-ctl --set-ctrl vertical_flip=1
 v4l2-ctl --set-ctrl horizontal_flip=1
 ```
+
+# C# APPROACH
+After getting dotnet installed, do the following in the RA-Cam directory:
+```
+dotnet add package OpenCV.Net --version 3.3.1
+```
