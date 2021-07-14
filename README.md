@@ -1,6 +1,8 @@
 # RACam
 
-This is the beginning of the repository for the Raising Awesome Smart Cam project.  It will apply various Visual AI techniques.
+The RA-Cam, or Raising Awesome Camera, is a Raspberry Pi Zero W based smart camera application/framework for the home.  It applies various Visual AI techniques to auto snapshot images and send alerts.  It also auto detects other Ra-Cam's automatically on your network.
+
+For full build info, visit our blog at Element14:  https://www.element14.com/community/community/project14/photography/blog/2021/07/11/just-a-test-troubleshooting-posting-issues
 
 # Build a Pi:
 
