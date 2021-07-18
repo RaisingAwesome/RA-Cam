@@ -78,3 +78,5 @@
 /home/pi/ra-cam/RA-Cam/obj/Debug/net5.0/ra-cam.pdb
 /home/pi/ra-cam/RA-Cam/obj/Debug/net5.0/ra-cam.genruntimeconfig.cache
 /home/pi/ra-cam/RA-Cam/obj/Debug/net5.0/ra-cam.csproj.CopyComplete
+/home/pi/ra-cam/RA-Cam/obj/Debug/net5.0/Razor/Pages/About.cshtml.g.cs
+/home/pi/ra-cam/RA-Cam/obj/Debug/net5.0/Razor/Pages/Snapshots.cshtml.g.cs

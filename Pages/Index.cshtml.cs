@@ -21,5 +21,10 @@ namespace ra_cam.Pages
         {
 
         }
+        public IActionResult OnPostMine()
+        {
+            // request buffer in jobject
+            return new JsonResult(Request.Query["value"]);
+        }
     }
 }
