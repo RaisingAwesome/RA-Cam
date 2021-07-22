@@ -1,4 +1,4 @@
-cd /home/pi/ra-cam/RA-Cam/
+cd /home/pi/RA-Cam/
 git pull
-/home/pi/ra-cam/RA-Cam/m
-
+/home/pi/RA-Cam/m
+python3 /home/pi/RA-Cam/cam.py 2>/dev/null &
