@@ -54,3 +54,7 @@ dotnet add package OpenCV.Net --version 3.3.1
 v4l2-ctl --set-ctrl vertical_flip=1
 v4l2-ctl --set-ctrl horizontal_flip=1
 ```
+
+# ffmpeg
+to install ffmpeg
+>sudo apt install -y ffmpeg
