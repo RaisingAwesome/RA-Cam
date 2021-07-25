@@ -71,16 +71,17 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
                     'Removed streaming client %s: %s',
                     self.client_address, str(e))
 
-        elif self.path == '/sethai':
+        elif self.path == '/sethai' or self.path == '/setnai' or self.path == '/sethai' or self.path == '/setbai':
             content="On"
-            if (os.path.exists("/home/pi/hai.cfg")):
-                 with open("/home/pi/hai.cfg") as f:
+            the_type=self.path.replace("/set","");
+            if (os.path.exists("/home/pi/"+the_type+".cfg")):
+                 with open("/home/pi/" + the_type + ".cfg") as f:
                       content = f.readline()
                  if (content=="On"):
                      content="Off"
                  else:
                      content="On"
-            f=open("/home/pi/hai.cfg","w")
+            f=open("/home/pi/"+ the_type + ".cfg","w")
             f.write(content)
             content = content.encode('utf-8')
             self.send_response(200)
@@ -88,7 +89,7 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.send_header('Content-Length', len(content))
             self.end_headers()
             self.wfile.write(content)
-        elif self.path == '/hai' or self.path=="/nai" or self.path=="/sai" or self.path=="bai":
+        elif self.path == '/hai' or self.path=="/nai" or self.path=="/sai" or self.path=="/bai":
             content="Off"
             if (os.path.exists("/home/pi" + self.path + ".cfg")):
                  with open("/home/pi" + self.path + ".cfg") as f:
