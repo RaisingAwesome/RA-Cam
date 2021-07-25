@@ -9,7 +9,7 @@ using System.Net.Http;
 namespace ra_cam.Pages
 {
     public class IndexModel : PageModel
-    {
+    {   public string racams=""; bool checker=false;
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger)
@@ -17,9 +17,32 @@ namespace ra_cam.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public async void OnGet()
+        {   //CheckForLiveCam("http://172.221.140.255:8555/still.jpg");
+            checker=true;
+            if (checker) racams="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:8555/stream.mjpg\");getAI(\"172.221.140.255:8555\");' id=10 name=10 title=\"RA-Cam\"><img loading=\"lazy\" src=\"/Images/cam.png\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\" onload='this.src=\"http://172.221.140.255:8555/still.jpg\";' onerror='this.onerror=null; this.src=\"/Images/notfound.png\"'/></a>";
+            racams+="<a href='javascript:  $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:54/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0\");' id=11 name=11 title=\"RA-Cam\"><img loading=\"lazy\" src=\"http://172.221.140.255:54/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0\" alt=\"RA-Cam Not Found\" width=\"128\" height=\"96\" onerror='this.onerror=null; this.src=\"/Images/notfound.png\"'/></a>";
+            racams+="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:8080/stream.mjpg\");getAI(\"172.221.140.255:8080\");' id=12 name=12 title=\"RA-Cam\"><img loading=\"lazy\" src=\"/Images/cam.png\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\"  onload='this.src=\"http://172.221.140.255:8080/still.jpg\";' onerror='this.onerror=null; $(\"#12\").hide();'/></a>";
+            racams+="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:233/stream.mjpg\");getAI(\"172.221.140.255:233\");' id=13 name=13 title=\"RA-Cam\"><img loading=\"lazy\" src=\"http://172.221.140.255:233/still.jpg\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\" onerror='this.onerror=null; this.src=\"/Images/notfound.png\"'/></a>";
+            racams+="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:8091/videostream.cgi?user=tester&pwd=tester&resolution=32&rate=0\");' id=14 name=14 title=\"RA-Cam\"><img loading=\"lazy\" src=\"http://172.221.140.255:8091/videostream.cgi?user=tester&pwd=tester&resolution=32&rate=0\" alt=\"RA-Cam Not Found\" width=\"128\" height=\"96\" onerror='this.onerror=null; this.src=\"/Images/notfound.png\"'/></a>";
+            racams+="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:8092/stream.mjpg\");getAI(\"172.221.140.255:8092\");' id=15 name=13 title=\"RA-Cam\"><img loading=\"lazy\" src=\"http://172.221.140.255:8092/still.jpg\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\" onerror='this.onerror=null; this.src=\"/Images/notfound.png\"'/></a>";
+            racams+="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:9090/stream.mjpg\");getAI(\"172.221.140.255:9090\");' id=16 name=13 title=\"RA-Cam\"><img loading=\"lazy\" src=\"http://172.221.140.255:9090/still.jpg\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\" onerror='this.onerror=null; this.src=\"/Images/notfound.png\"'/></a>";
+        }
+        public async void CheckForLiveCam(string the_cam)
         {
-
+            using (var httpClient = new HttpClient())
+            {
+                using (var request = new HttpRequestMessage(new HttpMethod("GET"), the_cam))
+                {
+                    try {
+                        var response = await httpClient.SendAsync(request);
+                        checker=true;
+                    }
+                    catch (Exception e){
+                        checker=false;
+                    }                     
+                }
+            }
         }
         public IActionResult OnPostMine()
         {
@@ -32,7 +55,7 @@ namespace ra_cam.Pages
             string the_msg="nothing";
             using (var httpClient = new HttpClient())
                 {
-                    using (var request = new HttpRequestMessage(new HttpMethod("GET"), "http://" + Request.Query["value"] +"/"+ Request.Query["the_type"]))
+                    using (var request = new HttpRequestMessage(new HttpMethod("GET"), "http://" + Request.Query["the_url"] +"/"+ Request.Query["the_type"]))
                     {
                         try {
                             var response = await httpClient.SendAsync(request);
@@ -40,7 +63,7 @@ namespace ra_cam.Pages
                             the_msg=contents.ToString();
                         }
                         catch (Exception e){
-                            the_msg="http://" + Request.Query["value"] +"/"+ Request.Query["the_type"];
+                            the_msg="http://" + Request.Query["the_url"] +"/"+ Request.Query["the_type"];
                         }                     
                     }
                 }
@@ -52,7 +75,7 @@ namespace ra_cam.Pages
             string the_msg="nothing";
             using (var httpClient = new HttpClient())
                 {
-                     using (var request = new HttpRequestMessage(new HttpMethod("GET"), "http://" + Request.Query["value"] +"/set"+ Request.Query["the_type"]))
+                     using (var request = new HttpRequestMessage(new HttpMethod("GET"), "http://" + Request.Query["the_url"] +"/set"+ Request.Query["the_type"]))
                     
                     {
                         try {
@@ -61,7 +84,7 @@ namespace ra_cam.Pages
                             the_msg=contents.ToString();
                         }
                         catch (Exception e){
-                            the_msg="http://" + Request.Query["value"] +"/set"+ Request.Query["the_type"];
+                            the_msg="http://" + Request.Query["the_url"] +"/set"+ Request.Query["the_type"];
                         }                     
                     }
                 }

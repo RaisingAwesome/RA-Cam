@@ -1,7 +1,9 @@
 /var/www/ra-cam/ra-cam
 /var/www/ra-cam/wwwroot/css/site.css
 /var/www/ra-cam/wwwroot/favicon.ico
+/var/www/ra-cam/wwwroot/Images/cam.png
 /var/www/ra-cam/wwwroot/Images/example.png
+/var/www/ra-cam/wwwroot/Images/notfound.png
 /var/www/ra-cam/wwwroot/Images/racam.png
 /var/www/ra-cam/wwwroot/js/site.js
 /var/www/ra-cam/wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css
