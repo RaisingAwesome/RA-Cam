@@ -71,7 +71,7 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
                     'Removed streaming client %s: %s',
                     self.client_address, str(e))
 
-        elif self.path == '/sethai' or self.path == '/setnai' or self.path == '/sethai' or self.path == '/setbai':
+        elif self.path == '/sethai' or self.path == '/setnai' or self.path == '/setsai' or self.path == '/setbai':
             content="On"
             the_type=self.path.replace("/set","");
             if (os.path.exists("/home/pi/"+the_type+".cfg")):
