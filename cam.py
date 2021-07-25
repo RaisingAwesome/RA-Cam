@@ -88,10 +88,10 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.send_header('Content-Length', len(content))
             self.end_headers()
             self.wfile.write(content)
-        elif self.path == '/hai':
+        elif self.path == '/hai' or self.path=="/nai" or self.path=="/sai" or self.path=="bai":
             content="Off"
-            if (os.path.exists("/home/pi/hai.cfg")):
-                 with open("/home/pi/hai.cfg") as f:
+            if (os.path.exists("/home/pi" + self.path + ".cfg")):
+                 with open("/home/pi" + self.path + ".cfg") as f:
                       content = f.readline()
             content = content.encode('utf-8')
             self.send_response(200)
