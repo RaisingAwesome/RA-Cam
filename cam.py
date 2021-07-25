@@ -8,6 +8,7 @@ import logging
 import socketserver
 from threading import Condition
 from http import server
+import os.path
 
 PAGE="""\
 <html>
@@ -69,6 +70,36 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
                 logging.warning(
                     'Removed streaming client %s: %s',
                     self.client_address, str(e))
+
+        elif self.path == '/sethai':
+            content="On"
+            if (os.path.exists("/home/pi/hai.cfg")):
+                 with open("/home/pi/hai.cfg") as f:
+                      content = f.readline()
+                 if (content=="On"):
+                     content="Off"
+                 else:
+                     content="On"
+            f=open("/home/pi/hai.cfg","w")
+            f.write(content)
+            content = content.encode('utf-8')
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html')
+            self.send_header('Content-Length', len(content))
+            self.end_headers()
+            self.wfile.write(content)
+        elif self.path == '/hai':
+            content="Off"
+            if (os.path.exists("/home/pi/hai.cfg")):
+                 with open("/home/pi/hai.cfg") as f:
+                      content = f.readline()
+            content = content.encode('utf-8')
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/html')
+            self.send_header('Content-Length', len(content))
+            self.end_headers()
+            self.wfile.write(content)
+
         elif self.path == '/still.jpg':
             self.send_response(200)
             self.send_header('Age', 0)
