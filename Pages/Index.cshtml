@@ -8,87 +8,115 @@
     <div class="row">
         <div class="col-lg-11">
             <div class="d-flex justify-content-center">
-              <img id="main_img" class="img-fluid" src="http://172.221.140.255:8555/stream.mjpg" style="max-height:640px;">
+              <img loading="lazy" id="main_img" class="img-fluid" src="http://172.221.140.255:8555/stream.mjpg" style="max-height:640px;">
             </div>
-            <div class="d-flex justify-content-center">
-              <div class="custom-control custom-switch mr-4">
-                <input type="checkbox" class="custom-control-input" id="customSwitch1">
-                <label class="custom-control-label" for="customSwitch1">Baby AI</label>
-              </div>
-              <div class="custom-control custom-switch mr-4">
-                <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                <label class="custom-control-label" for="customSwitch2">Human AI</label>
-              </div>
-              <div class="custom-control custom-switch mr-4">
-                <input type="checkbox" class="custom-control-input" id="customSwitch3">
-                <label class="custom-control-label" for="customSwitch3">Smiles AI</label>
-              </div>
-              <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customSwitch4">
-                <label class="custom-control-label" for="customSwitch4">Nature AI</label>
-              </div>
+            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header text-center">
+                    <strong class="mr-auto alert alert-success text-center">AI Mode Switched!</strong>
+                </div>
+            </div><form method=post>
+            <div class="d-flex text-center">              
+                  <div class="custom-control custom-switch mr-4">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1" onchange="checkbox_function('bai');">
+                    <label class="custom-control-label" for="customSwitch1">Baby AI</label>
+                  </div>
+                  <div class="custom-control custom-switch mr-4">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch2" name="customSwitch2" onchange="checkbox_function('hai');">
+                    <label class="custom-control-label" for="customSwitch2">Human AI</label>
+                  </div>
+                  <div class="custom-control custom-switch mr-4">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch3" onchange="checkbox_function('sai');">
+                    <label class="custom-control-label" for="customSwitch3">Smiles AI</label>
+                  </div>
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch4" onchange="checkbox_function('nai');">
+                    <label class="custom-control-label" for="customSwitch4">Nature AI</label>
+                  </div>
+              
             </div>
+            </form>
             <div class="d-flex justify-content-center">
               <a id=7 name=7 data-toggle="tooltip" title="The selected camera will apply the AI modes you have selected above.  Click here to view recent photos snapped by the selected AI." data-placement="top" class="btn btn-info m-2" href="Snapshots">View AI Snapshots</a>
             </div>
         </div>
         <div class="col-lg-1">
           <div class="text-center">
-            <small class="text-center">RA-Cams</small>
-            <div data-toggle="tooltip" data-placement="top" title="Click here to scan the RA-Cam network for newly connected RA-Cams.  It will only scan for devices on the same net as this web server.">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fa fa-refresh"></i></button>
+            <small><b>RA-Cams</b></small></br>            
+            <a href="javascript:gotclicked(10);" id=10 name=10 title="RA-Cam"><img loading="lazy" src="http://172.221.140.255:8555/still.jpg" width="128" height="96"/></a>
+            <a href="javascript:gotclicked(11);" id=11 name=11 title="RA-Cam"><img loading="lazy" src="http://172.221.140.255:54/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0" width="128" height="96"/></a>
+            <a href="javascript:gotclicked(12);" id=12 name=12 title="RA-Cam"><img loading="lazy" src="http://172.221.140.255:8080/still.jpg" width="128" height="96"/></a>
+            <a href="javascript:gotclicked(13);" id=13 name=13 title="RA-Cam"><img loading="lazy" src="http://172.221.140.255:233/still.jpg" width="128" height="96"/></a>
+            <a href="javascript:gotclicked(14);" id=14 name=14 title="RA-Cam"><img loading="lazy" src="http://172.221.140.255:8091/videostream.cgi?user=tester&pwd=tester&resolution=32&rate=0" width="128" height="96"/></a>
+            <a href="javascript:gotclicked(15);" id=15 name=13 title="RA-Cam"><img loading="lazy" src="http://172.221.140.255:8092/still.jpg" width="128" height="96"/></a>
+            <a href="javascript:gotclicked(16);" id=16 name=13 title="RA-Cam"><img loading="lazy" src="http://172.221.140.255:9090/still.jpg" width="128" height="96"/></a>
+            </br>
+            <div data-toggle="tooltip" data-placement="top" title="Click here to scan the RA-Cam network for newly connected RA-Cams.  It will only scan for devices on the same net as this web server." class='text-center'>
+                <div data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fa fa-refresh"></i></div>
             </div>
-            <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-sm">
-                
-                <div class="modal-content p-5">
-                <strong>SCANNING</STRONG>
-                  This will take a few minutes.  Scanning for RA-Cams is now being performed in the background.  This is achieved by a little program
-                  iterating through the subnet that this web server is on from IP addresses x.x.x.2 to x.x.x.x255.  It simply
-                  does a "get" and looks for a valid response.</br></br>
-                  Refresh the page later to see if anything new has arrived.  
+              <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">                  
+                  <div class="modal-content p-3">
+                  <strong>SCANNING</STRONG>
+                    This will take a few minutes.  Scanning for RA-Cams is now being performed in the background.</br></br>
+                    Refresh the page later to see if anything new has arrived.
+                    <button type="button" class="btn btn-secondary mt-3" data-dismiss="modal">Close</button>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-            <a href="javascript:gotclicked(10);" id=10 name=10><img src="http://172.221.140.255:8555/stream.mjpg" width="128" height="96"/></a>
-            <a href="javascript:gotclicked(11);" id=11 name=11><img src="http://172.221.140.255:54/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0" width="128" height="96"/></a>
-            <a href="javascript:gotclicked(12);" id=12 name=12><img src="http://172.221.140.255:8080/stream.mjpg" width="128" height="96"/></a>
-            <a href="javascript:gotclicked(13);" id=13 name=13><img src="http://172.221.140.255:233/stream.mjpg" width="128" height="96"/></a>
-            <a href="javascript:gotclicked(14);" id=14 name=14><img src="http://172.221.140.255:8091/videostream.cgi?user=tester&pwd=tester&resolution=32&rate=0" width="128" height="96"/></a>
-            <a href="javascript:gotclicked(15);" id=15 name=13><img src="http://172.221.140.255:8092/stream.mjpg" width="128" height="96"/></a>
           </div>
         </div>
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <strong class="mr-auto alert alert-success text-center">AI Mode Switched!</strong>
-                
-                </button>
-            </div>
-        </div>
+        
     </div>
 </div>
 @section scripts{
   <script type="text/javascript">
+      function getAI(the_type,the_site){
+        $.ajax({   
+             type: "POST",
+                  url: '?handler=Getter&the_type=' + the_type + '&value='+the_site, // Replace YOUR_CUSTOM_HANDLER with your handler.
+                  contentType: "application/json; charset=utf-8",
+
+                  beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                      $('input:hidden[name="__RequestVerificationToken"]').val());
+                  },
+                  error: function (jqXhr, textStatus, errorMessage) {
+                    alert(errorMessage + ".  " + textStatus);
+                  },                  
+                  dataType: "json"
+              }).done(function (data) {
+                  //alert(data);
+                  if (data.includes("On")) {
+                    $('#customSwitch2').prop("checked", true);
+                  } else {
+                    $('#customSwitch2').prop("checked", false);
+                  }
+              })
+      }
       function gotclicked(cam) 
       {              
         if (cam==10) {
           $("#main_img").attr("src","http://172.221.140.255:8555/stream.mjpg");
+
         }
         if (cam==11) {
           $("#main_img").attr("src","http://172.221.140.255:54/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0");
         }
-        if (cam==12) {
+        else if (cam==12) {
           $("#main_img").attr("src","http://172.221.140.255:8080/stream.mjpg");
         }
-        if (cam==13) {
+        else if (cam==13) {
           $("#main_img").attr("src","http://172.221.140.255:233/stream.mjpg");
         }
-        if (cam==14) {
+        else if (cam==14) {
           $("#main_img").attr("src","http://172.221.140.255:8091/videostream.cgi?user=tester&pwd=tester&resolution=32&rate=0");
         }
-        if (cam==15) {
+        else if (cam==15) {
           $("#main_img").attr("src","http://172.221.140.255:8092/stream.mjpg");
+        }
+        else if (cam==16) {
+          $("#main_img").attr("src","http://172.221.140.255:9090/stream.mjpg");
+          getAI("hai","172.221.140.255:9090");
         }
         $("[data-toggle='tooltip']").tooltip('hide');
       }
@@ -103,8 +131,29 @@
       };
     </script>
     <script>
-    $(document).ready(function(){
-    $('.toast').toast('show');
-    });
+        function checkbox_function(the_type) {            
+          var the_value=$("#main_img").attr("src").replaceAll('http://','');
+          the_value=the_value.replaceAll('/stream.mjpg','');
+          $.ajax({   
+             type: "POST",
+                  url: '?handler=Setter&the_type='+ the_type + '&value='+the_value, // Replace YOUR_CUSTOM_HANDLER with your handler.
+                  contentType: "application/json; charset=utf-8",
+
+                  beforeSend: function (xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                      $('input:hidden[name="__RequestVerificationToken"]').val());
+                  },
+                  error: function (jqXhr, textStatus, errorMessage) {
+                    alert(errorMessage + ".  " + textStatus);
+                  },                  
+                  dataType: "json"
+              }).done(function (data) {
+                  //alert(data);
+                  $('.toast').toast('show');
+              })
+        };
+        $(document).ready(function(){      
+          
+        });
     </script>
 }
