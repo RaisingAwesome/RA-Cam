@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,48 +7,59 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+
+
 namespace ra_cam.Pages
 {
     public class IndexModel : PageModel
-    {   public string racams=""; bool checker=false;
-        private readonly ILogger<IndexModel> _logger;
+    {   public string racams="";
 
-        public IndexModel(ILogger<IndexModel> logger)
+        private readonly ILogger<IndexModel> _logger;
+        
+        private IWebHostEnvironment _environment;
+
+        public IndexModel(ILogger<IndexModel> logger, IWebHostEnvironment environment)
         {
             _logger = logger;
+            _environment = environment;
         }
 
-        public async void OnGet()
-        {   //CheckForLiveCam("http://172.221.140.255:8555/still.jpg");
-            checker=true;
-            if (checker) racams="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:8555/stream.mjpg\");getAI(\"172.221.140.255:8555\");' id=10 name=10 title=\"RA-Cam\"><img loading=\"lazy\" src=\"/Images/cam.png\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\" onload='this.src=\"http://172.221.140.255:8555/still.jpg\";' onerror='this.onerror=null; this.src=\"/Images/notfound.png\"'/></a>";
-            racams+="<a href='javascript:  $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:54/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0\");' id=11 name=11 title=\"RA-Cam\"><img loading=\"lazy\" src=\"http://172.221.140.255:54/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0\" alt=\"RA-Cam Not Found\" width=\"128\" height=\"96\" onerror='this.onerror=null; this.src=\"/Images/notfound.png\"'/></a>";
-            racams+="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:8080/stream.mjpg\");getAI(\"172.221.140.255:8080\");' id=12 name=12 title=\"RA-Cam\"><img loading=\"lazy\" src=\"/Images/cam.png\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\"  onload='this.src=\"http://172.221.140.255:8080/still.jpg\";' onerror='this.onerror=null; $(\"#12\").hide();'/></a>";
-            racams+="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:233/stream.mjpg\");getAI(\"172.221.140.255:233\");' id=16 name=13 title=\"RA-Cam\"><img loading=\"lazy\" src=\"/Images/cam.png\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\"  onload='this.src=\"http://172.221.140.255:9090/still.jpg\";' onerror='this.onerror=null; $(\"#13\").hide();'/></a>";
-            racams+="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:8091/videostream.cgi?user=tester&pwd=tester&resolution=32&rate=0\");' id=14 name=14 title=\"RA-Cam\"><img loading=\"lazy\" src=\"http://172.221.140.255:8091/videostream.cgi?user=tester&pwd=tester&resolution=32&rate=0\" alt=\"RA-Cam Not Found\" width=\"128\" height=\"96\" onerror='this.onerror=null; this.src=\"/Images/notfound.png\"'/></a>";
-            racams+="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:8092/stream.mjpg\");getAI(\"172.221.140.255:8092\");' id=15 name=13 title=\"RA-Cam\"><img loading=\"lazy\" src=\"http://172.221.140.255:8092/still.jpg\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\" onerror='this.onerror=null; this.src=\"/Images/notfound.png\"'/></a>";
-            racams+="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://172.221.140.255:9090/stream.mjpg\");getAI(\"172.221.140.255:9090\");' id=16 name=16 title=\"RA-Cam\"><img loading=\"lazy\" src=\"/Images/cam.png\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\"  onload='this.src=\"http://172.221.140.255:9090/still.jpg\";' onerror='this.onerror=null; $(\"#16\").hide();'/></a>";
+        public void OnGet()
+        {   
+            GetPriorKnownCams();
         }
-        public async void CheckForLiveCam(string the_cam)
+
+        private void GetPriorKnownCams()
         {
-            using (var httpClient = new HttpClient())
-            {
-                using (var request = new HttpRequestMessage(new HttpMethod("GET"), the_cam))
-                {
-                    try {
-                        var response = await httpClient.SendAsync(request);
-                        checker=true;
-                    }
-                    catch (Exception e){
-                        checker=false;
-                    }                     
-                }
+            string line;  
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(Path.Combine(_environment.ContentRootPath, "", "racam_list.txt"));  
+            
+            while((line = file.ReadLine()) != null)  
+            {  
+                if (line.Contains("racam")) {
+                    racams+=MakeRACamThumbnail(line.Replace("racam",""));
+                } else if(line.Contains("ipcam") {
+                    racams+=MakeIPCamThumbnail(line.Replace("ipcam",""));
+                }                
             }
+            file.Close();
         }
-        public IActionResult OnPostMine()
+
+        private string MakeRACamThumbnail(string the_URL)
         {
-            // request buffer in jobject
-            return new JsonResult("hello");
+            string the_ID=the_URL.Replace(".","").Replace(":","").Replace("/","");
+            string the_str="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://" + the_URL + "/stream.mjpg\");getAI(\""+ the_URL + "\");' id=" + the_ID + " title=\"RA-Cam: " + the_URL + "\"><img loading=\"lazy\" src=\"/Images/cam.png\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\" onload='this.src=\"http://" + the_URL + "/still.jpg\";' onerror='this.onerror=null; $(\"#" + the_ID + "\").hide();'/></a>\n";
+            return the_str;
+        }
+        private string MakeIPCamThumbnail(string the_URL)
+        {
+            string the_ID=the_URL.Replace(".","").Replace(":","").Replace("/","");
+            string the_str="<a href='javascript:  $(\"#main_img\").attr(\"src\",\"http://" + the_URL + "/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0\");' id=" + the_ID + " title=\"RA-Cam\"><img loading=\"lazy\" src=\"http://" + the_URL + "/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0\" alt=\"RA-Cam Not Found\" width=\"128\" height=\"96\" onerror='this.onerror=null; $(\"#" + the_ID + "\").hide();'/></a>";
+
+            return the_str;
         }
         public async Task<IActionResult> OnPostGetter()
         {
@@ -63,7 +75,7 @@ namespace ra_cam.Pages
                             the_msg=contents.ToString();
                         }
                         catch (Exception e){
-                            the_msg="http://" + Request.Query["the_url"] +"/"+ Request.Query["the_type"];
+                            the_msg=e.ToString() + " - http://" + Request.Query["the_url"] +"/"+ Request.Query["the_type"];
                         }                     
                     }
                 }
@@ -84,7 +96,7 @@ namespace ra_cam.Pages
                             the_msg=contents.ToString();
                         }
                         catch (Exception e){
-                            the_msg="http://" + Request.Query["the_url"] +"/set"+ Request.Query["the_type"];
+                            the_msg=e.ToString() + " - http://" + Request.Query["the_url"] +"/set"+ Request.Query["the_type"];
                         }                     
                     }
                 }
