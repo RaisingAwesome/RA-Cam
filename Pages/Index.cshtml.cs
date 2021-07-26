@@ -10,7 +10,6 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
-
 namespace ra_cam.Pages
 {
     public class IndexModel : PageModel
@@ -33,19 +32,24 @@ namespace ra_cam.Pages
 
         private void GetPriorKnownCams()
         {
-            string line;  
-            System.IO.StreamReader file =
-                new System.IO.StreamReader(Path.Combine(_environment.ContentRootPath, "", "racam_list.txt"));  
-            
-            while((line = file.ReadLine()) != null)  
+            string line;
+            try{
+                System.IO.StreamReader file =
+                    new System.IO.StreamReader(Path.Combine(_environment.ContentRootPath, "", "racam_list.txt"));  
+                
+                while((line = file.ReadLine()) != null)  
+                {  
+                    if (line.Contains("racam")) {
+                        racams+=MakeRACamThumbnail(line.Replace("racam",""));
+                    } else if(line.Contains("ipcam")) {
+                        racams+=MakeIPCamThumbnail(line.Replace("ipcam",""));
+                    }                
+                }
+                file.Close();
+            } catch (Exception e)
             {  
-                if (line.Contains("racam")) {
-                    racams+=MakeRACamThumbnail(line.Replace("racam",""));
-                } else if(line.Contains("ipcam") {
-                    racams+=MakeIPCamThumbnail(line.Replace("ipcam",""));
-                }                
+                Console.WriteLine(e.Message);
             }
-            file.Close();
         }
 
         private string MakeRACamThumbnail(string the_URL)
