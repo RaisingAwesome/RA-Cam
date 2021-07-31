@@ -44,7 +44,7 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
         elif self.path == '/index.html':
             content = PAGE.encode('utf-8')
             self.send_response(200)
-            self.send_header('Content-Type', 'text/html')
+            self.send_header('Content-Type', 'text/html; charset=UTF-8')
             self.send_header('Content-Length', len(content))
             self.end_headers()
             self.wfile.write(content)
@@ -55,11 +55,19 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.send_header('Pragma', 'no-cache')
             self.send_header('Content-Type', 'multipart/x-mixed-replace; boundary=FRAME')
             self.end_headers()
+            start_time = time.time()
+            frame_count = 0
             try:
                 while True:
                     with output.condition:
                         output.condition.wait()
                         frame = output.frame
+                    frame_count += 1
+                    # calculate FPS every 5s
+                    if (time.time() - start_time) > 5:
+                        print("FPS: ", frame_count / (time.time() - start_time))
+                        frame_count = 0
+                    start_time = time.time()
                     self.wfile.write(b'--FRAME\r\n')
                     self.send_header('Content-Type', 'image/jpeg')
                     self.send_header('Content-Length', len(frame))
