@@ -10,11 +10,8 @@
             <div class="d-flex justify-content-center">
               <img loading="lazy" id="main_img" class="img-fluid" src="http://172.221.140.255:8555/stream.mjpg" style="max-height:640px;">
             </div>
-            <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header text-center">
-                    <strong class="mr-auto alert alert-success text-center">AI Mode Switched!</strong>
-                </div>
-            </div><form method=post class="p-0 m-0">
+            
+            <form method=post class="p-0 m-0">
             <div class="d-flex justify-content-center">              
                   <div class="custom-control custom-switch mr-4">
                     <input type="checkbox" class="custom-control-input" id="switch_bai" name="switch_bai" onchange="checkbox_function('bai');">
@@ -109,15 +106,6 @@
                   $('.bd-example2-modal-sm').modal('hide');
               });        
       }
-    </script>
-    <script>
-      function toastit(){
-        $('toast').toast({
-          delay: 2000
-        })
-
-        $('.toast').toast('show');
-      };
     </script>
     <script>
         function checkbox_function(the_type) {            

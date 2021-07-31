@@ -4,6 +4,7 @@
 
 import io
 import picamera
+import time
 import logging
 import socketserver
 from threading import Condition
@@ -13,7 +14,7 @@ import os.path
 PAGE="""\
 <html>
 <body>
-<img src="stream.mjpg" width="800" height="600" />
+<img src="/stream.mjpg" width="800" height="600" />
 </body>
 </html>
 """
@@ -64,10 +65,9 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
                         frame = output.frame
                     frame_count += 1
                     # calculate FPS every 5s
-                    if (time.time() - start_time) > 5:
-                        print("FPS: ", frame_count / (time.time() - start_time))
+                        #print("FPS: ", frame_count / (time.time() - start_time))
                         frame_count = 0
-                    start_time = time.time()
+                        start_time = time.time()
                     self.wfile.write(b'--FRAME\r\n')
                     self.send_header('Content-Type', 'image/jpeg')
                     self.send_header('Content-Length', len(frame))
@@ -138,7 +138,7 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
     allow_reuse_address = True
     daemon_threads = True
 
-with picamera.PiCamera(resolution='800x600', framerate=24) as camera:
+with picamera.PiCamera(resolution='2592x1944', framerate=15) as camera:
     output = StreamingOutput()
     #Uncomment the next line to change your Pi's Camera rotation (in degrees)
     camera.rotation = 180
