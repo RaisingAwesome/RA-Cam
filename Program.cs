@@ -21,6 +21,7 @@ namespace ra_cam
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+		            webBuilder.UseUrls("http://localhost:5002");
                 });
     }
 }

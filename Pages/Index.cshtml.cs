@@ -67,8 +67,15 @@ namespace ra_cam.Pages
         }
         private string MakeIPCamThumbnail(string the_URL)
         {
+            string the_flipper="";
+            string the_flipper2="";
+            if (the_URL.Contains("flip")) {
+                the_flipper="class=\"rotate180\" ";
+                the_flipper2="rotate180";
+                the_URL=the_URL.Replace(" flip","");
+            }
             string the_ID=the_URL.Replace(".","").Replace(":","").Replace("/","");
-            string the_str="<a href='javascript:  $(\"#main_img\").attr(\"src\",\"http://" + the_URL + "/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0\");' id=" + the_ID + " title=\"RA-Cam\"><img loading=\"lazy\" src=\"http://" + the_URL + "/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0\" alt=\"RA-Cam Not Found\" width=\"128\" height=\"96\" onerror='this.onerror=null; $(\"#" + the_ID + "\").hide();'/></a>";
+            string the_str="<a href='javascript:  $(\"#main_img\").attr(\"src\",\"http://" + the_URL + "/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0\");$(\"#main_img\").attr(\"class\",\"" + the_flipper2 + "\");' id=" + the_ID + " title=\"RA-Cam\"><img loading=\"lazy\" " + the_flipper + "src=\"http://" + the_URL + "/videostream.cgi?user=testor&pwd=testor&resolution=32&rate=0\" alt=\"RA-Cam Not Found\" width=\"128\" height=\"96\" onerror='this.onerror=null; $(\"#" + the_ID + "\").hide();'/></a>";
 
             return the_str;
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6SSJqjDJ3EmLFn+AD9OhBIhaBXRYvi/sTLgttW4GlClObgAAgj95vcb4um/XEeZJt7VoWIGsvL7Fa9NBFdQ/aw==",
+  "dgSpecHash": "yliC/7t1/ZuFw0mf9VNs3OonltnsbWgO4OrScvdZ2OM4p3JRbXIOWSAV6KpzoUpDwZu7pyRnh4Dv2t6Beyv/hA==",
   "success": true,
-  "projectFilePath": "/home/pi/RA-Cam/ra-cam.csproj",
+  "projectFilePath": "/home/sjmill01/RA-Cam/ra-cam.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

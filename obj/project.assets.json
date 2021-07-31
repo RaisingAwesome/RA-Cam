@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "/home/pi/.nuget/packages/": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/pi/RA-Cam/ra-cam.csproj",
+      "projectUniqueName": "/home/sjmill01/RA-Cam/ra-cam.csproj",
       "projectName": "ra-cam",
-      "projectPath": "/home/pi/RA-Cam/ra-cam.csproj",
-      "packagesPath": "/home/pi/.nuget/packages/",
-      "outputPath": "/home/pi/RA-Cam/obj/",
+      "projectPath": "/home/sjmill01/RA-Cam/ra-cam.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/home/sjmill01/RA-Cam/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/pi/.nuget/NuGet/NuGet.Config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
