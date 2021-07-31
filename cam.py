@@ -4,7 +4,7 @@
 
 import io
 import picamera
-import time
+
 import logging
 import socketserver
 from threading import Condition
@@ -56,18 +56,12 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.send_header('Pragma', 'no-cache')
             self.send_header('Content-Type', 'multipart/x-mixed-replace; boundary=FRAME')
             self.end_headers()
-            start_time = time.time()
-            frame_count = 0
+
             try:
                 while True:
                     with output.condition:
                         output.condition.wait()
                         frame = output.frame
-                    frame_count += 1
-                    # calculate FPS every 5s
-                        #print("FPS: ", frame_count / (time.time() - start_time))
-                        frame_count = 0
-                        start_time = time.time()
                     self.wfile.write(b'--FRAME\r\n')
                     self.send_header('Content-Type', 'image/jpeg')
                     self.send_header('Content-Length', len(frame))
