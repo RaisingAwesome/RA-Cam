@@ -54,8 +54,15 @@ namespace ra_cam.Pages
 
         private string MakeRACamThumbnail(string the_URL)
         {
-            string the_ID=the_URL.Replace(".","").Replace(":","").Replace("/","");
-            string the_str="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://" + the_URL + "/stream.mjpg\");getAI(\""+ the_URL + "\");' id=" + the_ID + " title=\"RA-Cam: " + the_URL + "\"><img loading=\"lazy\" src=\"/Images/cam.png\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\" onload='this.src=\"http://" + the_URL + "/still.jpg\";' onerror='this.onerror=null; $(\"#" + the_ID + "\").hide();'/></a>\n";
+            string the_ID=the_URL.Replace(".","").Replace(":","").Replace("/","").Replace(" flip","");
+            string the_flipper="";
+            string the_flipper2="";
+            if (the_URL.Contains("flip")) {
+                the_flipper="class=\"rotate180\" ";
+                the_flipper2="rotate180";
+                the_URL=the_URL.Replace(" flip","");
+            }
+            string the_str="<a href='javascript: $(\"#main_img\").attr(\"src\",\"http://" + the_URL + "/stream.mjpg\");$(\"#main_img\").attr(\"class\",\"" + the_flipper2 + "\"); getAI(\""+ the_URL + "\");' id=" + the_ID + " title=\"RA-Cam: " + the_URL + "\"><img loading=\"lazy\" " + the_flipper + "src=\"/Images/cam.png\" width=\"128\" height=\"96\" alt=\"RA-Cam Not Found\" onload='this.src=\"http://" + the_URL + "/still.jpg\";' onerror='this.onerror=null; $(\"#" + the_ID + "\").hide();'/></a>\n";
             return the_str;
         }
         private string MakeIPCamThumbnail(string the_URL)
