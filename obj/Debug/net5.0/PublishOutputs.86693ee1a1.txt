@@ -1,8 +1,11 @@
 /var/www/ra-cam/ra-cam
+/var/www/ra-cam/wwwroot/css/docs.min.css
 /var/www/ra-cam/wwwroot/css/site.css
 /var/www/ra-cam/wwwroot/favicon.ico
 /var/www/ra-cam/wwwroot/Images/cam.png
 /var/www/ra-cam/wwwroot/Images/example.png
+/var/www/ra-cam/wwwroot/Images/favicon.png
+/var/www/ra-cam/wwwroot/Images/logo2.png
 /var/www/ra-cam/wwwroot/Images/notfound.png
 /var/www/ra-cam/wwwroot/Images/racam.png
 /var/www/ra-cam/wwwroot/js/site.js

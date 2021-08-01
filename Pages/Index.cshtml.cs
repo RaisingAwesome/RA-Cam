@@ -16,6 +16,7 @@ namespace ra_cam.Pages
     {   public string racams="";
         public string maxwidth="370px";
         public bool mobile=true;
+        public string logoheight="50px";
         private readonly ILogger<IndexModel> _logger;
         
         private IWebHostEnvironment _environment;

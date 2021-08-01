@@ -11,7 +11,7 @@ namespace ra_cam.Pages
     public class PrivacyModel : PageModel
     {
         private readonly ILogger<PrivacyModel> _logger;
-
+        public string logoheight="50px";
         public PrivacyModel(ILogger<PrivacyModel> logger)
         {
             _logger = logger;
