@@ -14,7 +14,8 @@ namespace ra_cam.Pages
 {
     public class IndexModel : PageModel
     {   public string racams="";
-
+        public string maxwidth="370px";
+        public bool mobile=true;
         private readonly ILogger<IndexModel> _logger;
         
         private IWebHostEnvironment _environment;
@@ -26,10 +27,19 @@ namespace ra_cam.Pages
         }
 
         public void OnGet()
-        {   
+        {   GetDevice();
             GetPriorKnownCams();
         }
-
+        private void GetDevice()
+        {
+            if (Request.Headers["User-Agent"].ToString().Contains("Windows")) mobile=false; else mobile=true;
+            if (mobile) {
+                 
+            } else 
+            {
+                maxwidth="800px";
+            }
+        }
         private void GetPriorKnownCams()
         {
             string line;
