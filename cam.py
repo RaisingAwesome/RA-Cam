@@ -14,7 +14,7 @@ import os.path
 PAGE="""\
 <html>
 <body>
-<img src="/stream.mjpg" width="1000" height="750" />
+<img src="/stream.mjpg" width="1920" height="1080" />
 </body>
 </html>
 """
@@ -132,7 +132,7 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
     allow_reuse_address = True
     daemon_threads = True
 
-with picamera.PiCamera(resolution='1000x750', framerate=20) as camera:
+with picamera.PiCamera(resolution='1920x1080', framerate=20) as camera:
     output = StreamingOutput()
     #Uncomment the next line to change your Pi's Camera rotation (in degrees)
     camera.rotation = 180
