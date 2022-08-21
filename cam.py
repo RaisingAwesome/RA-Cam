@@ -136,7 +136,7 @@ with picamera.PiCamera(resolution='1920x1442', framerate=20) as camera:
     output = StreamingOutput()
     #Uncomment the next line to change your Pi's Camera rotation (in degrees)
     camera.rotation = 180
-    camera.start_recording(output, format='mjpeg')
+    camera.start_recording(output, format='mjpeg', quality=1)
     try:
         address = ('', 8555)
         server = StreamingServer(address, StreamingHandler)
